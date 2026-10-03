@@ -27,6 +27,14 @@ Medication adherence and care-coordination platform for patients, doctors and ph
 
 `config.js` points localhost frontends to `http://localhost:8000`. For a deployed frontend, set `window.MEZA_DAWA_API` to the deployed API URL.
 
+## Render deployment
+
+The root `.python-version` file pins Render to Python 3.12.10. This avoids Python 3.14, for which the pinned `pydantic-core` dependency does not have a compatible prebuilt wheel.
+
+- Build command: `pip install -r requirements.txt`
+- Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+- Pre-deploy command: `alembic upgrade head`
+
 ## SMS token system
 
 The SMS balance is now fully backend-controlled.
